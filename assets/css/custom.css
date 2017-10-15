@@ -1,0 +1,12 @@
+body {
+  background-image: url("../images/ffviiibg.jpg");
+}
+
+.questionContainer {
+  width: 400px;
+  height: 125px;
+  margin-top: 200px;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: whitesmoke;
+}
