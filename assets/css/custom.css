@@ -1,14 +1,17 @@
-body {
-  background-image: url("../images/ffviiibg.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
+  body {
+ background: url("../images/ffviiibg.jpg") no-repeat center center fixed;
+     -webkit-background-size: cover;
+     -moz-background-size: cover;
+     -o-background-size: cover;
+     background-size: cover;
+     position: relative;
 }
 
 .questionContainer {
-  width: 400px;
-  height: 125px;
-  margin-top: 200px;
-  margin-right: auto;
-  margin-left: auto;
+  
+  max-width: 50%;
+  height: 100%;
+  margin-top: 15%;
+  margin-left: 15%;
   background-color: whitesmoke;
 }
