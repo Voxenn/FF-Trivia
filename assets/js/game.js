@@ -80,6 +80,7 @@ function askQuestions() {
     $("#answer1").html(questionBank[questionNumber].answer1);
     $("#answer2").html(questionBank[questionNumber].answer2);
     $("#answer3").html(questionBank[questionNumber].answer3);
+    timer();
   }
 }
 function loadQuestion(question, answer1, answer2, answer3, correctAn) {
@@ -132,4 +133,18 @@ function clearFields() {
   $("#answer1").empty();
   $("#answer2").empty();
   $("#answer3").empty();
+}
+
+function timer() {
+  var barElem = document.getElementById("bar");
+  var width = 100;
+  var id = setInterval(frame, 10);
+  function frame() {
+    if (width <= 0) {
+      clearInterval(id);
+    } else {
+      width--;
+      barElem.style.width = width - '%';
+    }
+  }
 }
