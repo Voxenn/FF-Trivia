@@ -7,19 +7,20 @@ var correctAnswers = 0;
 var questionNumber = 0;
 var progress = 0;
 var answer = "";
+var id;
 
 
 $(document).ready(main);
 function main() {
   init();
   $("#answer1").click(function() {
-    checkAnswer($("#answer1").html());
+    checkAnswer($("#answer1 span").html());
   });
   $("#answer2").click(function() {
-    checkAnswer($("#answer2").html());
+    checkAnswer($("#answer2 span").html());
   });
   $("#answer3").click(function() {
-    checkAnswer($("#answer3").html());
+    checkAnswer($("#answer3 span").html());
   });
 }
 
@@ -69,18 +70,23 @@ function init() {
 
   questionBank = [question1, question2, question3, question4, question5,
     question6];
+    $("#replay").hide();
     askQuestions();
 }
 
 function askQuestions() {
   if (progress === questions) {
+    questionBank = [];
     displayResults();
   } else {
     $("#question").html(questionBank[questionNumber].question);
-    $("#answer1").html(questionBank[questionNumber].answer1);
-    $("#answer2").html(questionBank[questionNumber].answer2);
-    $("#answer3").html(questionBank[questionNumber].answer3);
-    timer();
+    $("#answer1 span").html(questionBank[questionNumber].answer1);
+    $("#answer2 span").html(questionBank[questionNumber].answer2);
+    $("#answer3 span").html(questionBank[questionNumber].answer3);
+    clearInterval(id);
+    if (questionNumber < 6) {
+      timer();
+    }
   }
 }
 function loadQuestion(question, answer1, answer2, answer3, correctAn) {
@@ -96,6 +102,8 @@ function checkAnswer(answer) {
   if (answer === questionBank[questionNumber].correctAn) {
     correctAnswers++;
     alert("Great job!!");
+  } else if (answer === "") {
+    alert("Out of time!");
   } else {
     alert("Incorrect answer. The correct answer is: " +
     questionBank[questionNumber].correctAn);
@@ -118,6 +126,11 @@ function displayResults() {
     $("#answer1").html("Better luck next time, rookie.");
   }
   correctAnswers = 0;
+  $("#replay").show();
+  $("#replay span").html("Play again?");
+  $("#replay span").click(function reload() {
+      location.reload();
+  });
 }
 
 function setBackground() {
@@ -133,18 +146,24 @@ function clearFields() {
   $("#answer1").empty();
   $("#answer2").empty();
   $("#answer3").empty();
+  $("#answer1").hide();
+  $("#answer2").hide();
+  $("#answer3").hide();
+  $("#progressBar").hide();
+  $("#bar").hide();
 }
 
 function timer() {
   var barElem = document.getElementById("bar");
   var width = 100;
-  var id = setInterval(frame, 10);
+  id = setInterval(frame, 85);
   function frame() {
     if (width <= 0) {
       clearInterval(id);
+      checkAnswer("");
     } else {
       width--;
-      barElem.style.width = width - '%';
+      barElem.style.width = width + '%';
     }
   }
 }
