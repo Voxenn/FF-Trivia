@@ -8,11 +8,11 @@
 }
 
 .questionContainer {
-
+  position: absolute;
+  top: 50%;
+  left: 33%;
+  margin-top: 10%;
   max-width: 50%;
-  height: 100%;
-  margin-top: 15%;
-  margin-left: 15%;
   background-color: whitesmoke;
 }
 
@@ -31,7 +31,8 @@
 .answerButton {
     padding: 10%;
     width: 75%;
-    margin: 3%;
+    margin-left: 12%;
+    margin-bottom: 5%;
     display: inline-block;
     border-radius: 4px;
     background-color: #0F3C73;
